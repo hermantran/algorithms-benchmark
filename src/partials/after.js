@@ -1,0 +1,2 @@
+  window.algorithms = algorithms;
+})();

@@ -7,7 +7,7 @@
     array[first] = array[second];
     array[second] = temp;
   }
-  
+
   algorithms.bubbleSort = function(array) {
     var len = array.length,
         swapped,
@@ -29,25 +29,39 @@
       }
     }
   };
-  
-  algorithms.selectionSort = function(array) {
+
+  algorithms.cocktailSort = function(array) {
     var len = array.length,
-        min,
+        swapped,
         i,
         j;
     
-    for (i = 0; i < len - 1; i++) {
-      min = i;
-      for (j = i + 1; j < len; j++) {
-        if (array[j] < array[min]) {
-          min = j;
+    for (i = 0; i < len; i++) {
+      swapped = false;
+      
+      // Sort to smallest
+      if (i % 1) {
+        for (j = len - 1; j > 0; j--) {
+          if (array[j-1] < array[j]) {
+            _swap(array, j-1, j);
+            swapped = true;
+          }
+        }
+      } else {
+        for (j = 0; j < len - 1; j++) {
+          if (array[j] > array[j+1]) {
+              _swap(array, j, j+1);
+              swapped = true;
+          }
         }
       }
       
-      _swap(array, i, min);
+      if (!swapped) {
+        break;
+      }
     }
   };
-  
+
   algorithms.insertionSort = function(array) {
     var len = array.length,
         temp,
@@ -74,6 +88,24 @@
       }
     }
   };
-  
+
+  algorithms.selectionSort = function(array) {
+    var len = array.length,
+        min,
+        i,
+        j;
+    
+    for (i = 0; i < len - 1; i++) {
+      min = i;
+      for (j = i + 1; j < len; j++) {
+        if (array[j] < array[min]) {
+          min = j;
+        }
+      }
+      
+      _swap(array, i, min);
+    }
+  };
+
   window.algorithms = algorithms;
 })();
