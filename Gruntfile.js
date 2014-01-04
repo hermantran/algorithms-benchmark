@@ -27,6 +27,14 @@ module.exports = function(grunt) {
       }
     },
     
+    uglify: {
+      dist: {
+        files: {
+          'dist/algorithms.min.js': ['src/algorithms.js']  
+        }
+      }
+    },
+    
     watch: {
       js: { 
         files: ['<%= jshint.all %>', 'src/**/*.js'],
@@ -39,7 +47,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   
   grunt.registerTask('travis', ['jshint', 'jasmine']);
-  grunt.registerTask('default', ['travis']);
+  grunt.registerTask('default', ['concat', 'travis', 'uglify']);
 };

@@ -39,14 +39,15 @@
     for (i = 0; i < len; i++) {
       swapped = false;
       
-      // Sort to smallest
+      // Sort smallest to beginning
       if (i % 1) {
         for (j = len - 1; j > 0; j--) {
-          if (array[j-1] < array[j]) {
+          if (array[j-1] > array[j]) {
             _swap(array, j-1, j);
             swapped = true;
           }
         }
+      // Sort largest to end
       } else {
         for (j = 0; j < len - 1; j++) {
           if (array[j] > array[j+1]) {
