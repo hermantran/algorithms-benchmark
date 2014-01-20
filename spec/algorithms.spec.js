@@ -24,7 +24,7 @@ function createSuite(algorithm) {
 }
 
 for (var algorithm in window.algorithms) {
-  if (window.algorithms.hasOwnProperty(algorithm)) {
+  if (window.algorithms.hasOwnProperty(algorithm) && algorithm !== 'stats') {
     createSuite(algorithm);  
   }
 }

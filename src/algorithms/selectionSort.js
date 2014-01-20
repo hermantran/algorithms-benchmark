@@ -7,11 +7,11 @@
     for (i = 0; i < len - 1; i++) {
       min = i;
       for (j = i + 1; j < len; j++) {
-        if (array[j] < array[min]) {
+        if (_check(j, '<', min)) {
           min = j;
         }
       }
       
-      _swap(array, i, min);
+      _swap(i, min);
     }
   };

@@ -8,9 +8,9 @@
       swapped = false;
       
       for (j = 0; j < len - 1; j++) {
-        if (array[j] > array[j+1]) {
-            _swap(array, j, j+1);
-            swapped = true;
+        if (_check(j, '>', j+1)) {
+          _swap(j, j+1);
+          swapped = true;
         }
       }
       

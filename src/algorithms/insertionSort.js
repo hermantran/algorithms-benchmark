@@ -9,7 +9,7 @@
       pos = -1;
       
       for (j = 0; j < i; j++) {
-        if (array[i] < array[j]) {
+        if (_check(i, '<', j)) {
           pos = j;
           temp = array[i];
           break;
@@ -18,9 +18,9 @@
       
       if (pos > -1) {
         for (j = i; j > pos; j--) {
-          array[j] = array[j-1];
+          _set(j, array[j-1]);
         }
-        array[pos] = temp;
+        _set(pos, temp);
       }
     }
   };
