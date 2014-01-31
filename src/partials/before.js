@@ -36,12 +36,14 @@
     _array[first] = _array[second];
     _array[second] = temp;
     _stats.accesses += 2;
+    algorithms.afterAccess(_array);
   }
   
   // Sets the value of at an array index - one array element access
   function _set(index, value) {
     _array[index] = value;
     _stats.accesses++;
+    algorithms.afterAccess(_array);
   }
   
   // Compares the value at two given array indexes
@@ -58,5 +60,6 @@
     }
     
     _stats.comparisons++;
+    algorithms.afterComparison(_array);
     return bool;
   }

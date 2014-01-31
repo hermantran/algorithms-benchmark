@@ -26,6 +26,8 @@
     };
   }
 
+  algorithms.afterAccess = function() {};
+  algorithms.afterComparison = function() {};
   algorithms.stats = _stats;
 
   // http://www.matteoagosti.com/blog/2013/02/24/writing-javascript-modules-for-both-browser-and-node/
