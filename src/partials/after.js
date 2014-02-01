@@ -10,7 +10,7 @@
     var sort = algorithms[algorithm];
     
     return function(array) {
-      var startTime = window.performance.now(),
+      var startTime = _now(),
           endTime;
       
       _stats.runtime = 0;
@@ -20,7 +20,7 @@
       
       sort(_array);
       
-      endTime = window.performance.now();
+      endTime = _now();
       _stats.runtime = endTime - startTime; 
       return _stats;
     };

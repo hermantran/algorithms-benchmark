@@ -8,26 +8,41 @@
         accesses: 0
       },
       // Storing reference to array to be sorted, for use with internal helper functions
-      _array;
+      _array,
+      // Timestamp function to benchmark the runtime of each sorting algorithm,
+      _now;
   
-  // performance.now() polyfill https://gist.github.com/paulirish/5438650
-  (function(){
-    // prepare base perf object
-    if (typeof window.performance === 'undefined') {
-      window.performance = {};
-    }
-  
-    if (!window.performance.now) {
-      var nowOffset = Date.now();
+  _now = (function(){
+    var now;
     
-      if (performance.timing && performance.timing.navigationStart) {
-        nowOffset = performance.timing.navigationStart;
+    if (typeof window === 'undefined') {
+      // http://stackoverflow.com/questions/11725691/how-to-get-a-microtime-in-node-js
+      now = function now() {
+        var hrTime = process.hrtime();
+        return (hrTime[0] * 1000 + hrTime[1] / 1000);
+      };
+    } else { 
+      // performance.now() polyfill https://gist.github.com/paulirish/5438650
+      if (typeof window.performance === 'undefined') {
+        window.performance = {};
       }
     
-      window.performance.now = function now() {
-        return Date.now() - nowOffset;
-      };
+      if (!window.performance.now) {
+        var nowOffset = Date.now();
+      
+        if (performance.timing && performance.timing.navigationStart) {
+          nowOffset = performance.timing.navigationStart;
+        }
+      
+        window.performance.now = function now() {
+          return Date.now() - nowOffset;
+        };
+      }
+      
+      now = window.performance.now;
     }
+    
+    return now;
   })();
   
   // Swaps the values at two given array indexes - two array element accesses
@@ -47,7 +62,7 @@
   }
   
   // Compares the value at two given array indexes
-  function _check(first, operator, second) {
+  function _compare(first, operator, second) {
     var bool;
     
     if (operator === '>') {
@@ -60,7 +75,7 @@
     }
     
     _stats.comparisons++;
-    algorithms.afterComparison(_array);
+    algorithms.afterComparison(_array, first, second);
     return bool;
   }
 
@@ -74,7 +89,7 @@
       swapped = false;
       
       for (j = 0; j < len - 1; j++) {
-        if (_check(j, '>', j+1)) {
+        if (_compare(j, '>', j+1)) {
           _swap(j, j+1);
           swapped = true;
         }
@@ -98,7 +113,7 @@
       // Most largest value to end
       if (i % 2) {
         for (j = 0; j < len - 1; j++) {
-          if (_check(j, '>', j+1)) {
+          if (_compare(j, '>', j+1)) {
             _swap(j, j+1);
             swapped = true;
           }
@@ -106,7 +121,7 @@
       // Move smallest value to beginning
       } else {
         for (j = len - 1; j > 0; j--) {
-          if (_check(j-1, '>', j)) {
+          if (_compare(j-1, '>', j)) {
             _swap(j-1, j);
             swapped = true;
           }
@@ -130,7 +145,7 @@
       pos = -1;
       
       for (j = 0; j < i; j++) {
-        if (_check(i, '<', j)) {
+        if (_compare(i, '<', j)) {
           pos = j;
           temp = array[i];
           break;
@@ -155,7 +170,7 @@
     for (i = 0; i < len - 1; i++) {
       min = i;
       for (j = i + 1; j < len; j++) {
-        if (_check(j, '<', min)) {
+        if (_compare(j, '<', min)) {
           min = j;
         }
       }
@@ -176,7 +191,7 @@
     var sort = algorithms[algorithm];
     
     return function(array) {
-      var startTime = window.performance.now(),
+      var startTime = _now(),
           endTime;
       
       _stats.runtime = 0;
@@ -186,7 +201,7 @@
       
       sort(_array);
       
-      endTime = window.performance.now();
+      endTime = _now();
       _stats.runtime = endTime - startTime; 
       return _stats;
     };

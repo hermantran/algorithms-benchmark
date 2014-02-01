@@ -10,7 +10,7 @@
       // Most largest value to end
       if (i % 2) {
         for (j = 0; j < len - 1; j++) {
-          if (_check(j, '>', j+1)) {
+          if (_compare(j, '>', j+1)) {
             _swap(j, j+1);
             swapped = true;
           }
@@ -18,7 +18,7 @@
       // Move smallest value to beginning
       } else {
         for (j = len - 1; j > 0; j--) {
-          if (_check(j-1, '>', j)) {
+          if (_compare(j-1, '>', j)) {
             _swap(j-1, j);
             swapped = true;
           }

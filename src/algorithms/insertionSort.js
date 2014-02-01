@@ -9,7 +9,7 @@
       pos = -1;
       
       for (j = 0; j < i; j++) {
-        if (_check(i, '<', j)) {
+        if (_compare(i, '<', j)) {
           pos = j;
           temp = array[i];
           break;

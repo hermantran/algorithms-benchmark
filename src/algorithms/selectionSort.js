@@ -7,7 +7,7 @@
     for (i = 0; i < len - 1; i++) {
       min = i;
       for (j = i + 1; j < len; j++) {
-        if (_check(j, '<', min)) {
+        if (_compare(j, '<', min)) {
           min = j;
         }
       }

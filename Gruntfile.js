@@ -1,6 +1,8 @@
 module.exports = function(grunt) {
   'use strict';
   grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+    
     jasmine: {
       src: 'src/algorithms.js',
       options: {
@@ -28,6 +30,9 @@ module.exports = function(grunt) {
     },
     
     uglify: {
+      options: {
+        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */'  
+      },
       dist: {
         files: {
           'dist/algorithms.min.js': ['src/algorithms.js']  
