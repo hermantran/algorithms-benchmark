@@ -26,6 +26,7 @@
     };
   }
 
+  // Add these properties after each algorithm property is prepared
   algorithms.afterAccess = function() {};
   algorithms.afterComparison = function() {};
   algorithms.stats = _stats;

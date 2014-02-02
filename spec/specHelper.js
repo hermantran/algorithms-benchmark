@@ -32,8 +32,8 @@ var testCases = {
 
 function randomArray() {
   var random = [];
-  for (var i = 0; i < 100; i++) {
-      var el = Math.round(Math.random() * 100);
+  for (var i = 0; i < 50; i++) {
+      var el = Math.round(Math.random() * 50);
       random.push(el);
   }
   

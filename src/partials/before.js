@@ -39,7 +39,9 @@
         };
       }
       
-      now = window.performance.now;
+      now = function() {
+        return window.performance.now();
+      };
     }
     
     return now;
@@ -47,7 +49,13 @@
   
   // Swaps the values at two given array indexes - two array element accesses
   function _swap(first, second) {
-    var temp = _array[first];
+    var temp;
+    
+    if (first === second) {
+      return; 
+    }
+    
+    temp = _array[first];
     _array[first] = _array[second];
     _array[second] = temp;
     _stats.accesses += 2;
@@ -68,8 +76,14 @@
     if (operator === '>') {
       bool = _array[first] > _array[second];    
     }
+    else if (operator === '>=') {
+      bool = _array[first] >= _array[second];  
+    }
     else if (operator === '<') {
       bool = _array[first] < _array[second];    
+    } 
+    else if (operator === '<=') {
+      bool = _array[first] <= _array[second];
     } else {
       throw new Error('Unknown operator used.');  
     }
