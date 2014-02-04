@@ -20,6 +20,7 @@
       
       sort(_array);
       
+      _array = [];
       endTime = _now();
       _stats.runtime = endTime - startTime; 
       return _stats;

@@ -1,10 +1,49 @@
-# Algorithms in JS
+  algorithms
+==================
 
 [![Build Status](https://travis-ci.org/hermantran/js-algorithms.png?branch=master)](https://travis-ci.org/hermantran/js-algorithms)
 
-* Uses the Jasmine BDD testing framework
-* Includes the following sorting algorithms:
-  * Bubble sort
-  * Cocktail sort
-  * Insertion sort
-  * Selection sort
+algorithms is a sorting algorithm library in JavaScript that was created for the purposes of benchmarking and evaluating the differences between different sorting algorithms. The library currently includes implementations of the following: bubble sort, cocktail sort, insertion sort, quick sort, and selection sort. Unit tests are written with the Jasmine BDD framework.
+
+## Setup
+Include algorithms.min.js on your page. The library is exposed as `window.algorithms` or alternatively as a CommonJS or AMD module if detected. 
+
+## Usage
+The following methods are supported:
+* `algorithms.bubbleSort(array)`
+* `algorithms.cocktailSort(array)`
+* `algorithms.insertionSort(array)`
+* `algorithms.quickSort(array, [left], [right])`
+* `algorithms.insertionSort(array)`
+
+All sorting methods return an object containing the following stats as properties:
+* `runtime`: The runtime of the sorting method. In browsers, this is in milliseconds and uses `window.performance.now()` where supported. In Node.js, this is in microseconds and uses `process.hrtime()`.
+* `accesses`: The number of times an array element's value was modified.
+* `comparisons`: The number of times that two array elements were compared.
+
+The additional helper object/functions are supported:
+* `algorithms.stats`: Returns the object containing stats from the latest run of any sort
+* `algorithms.afterAccess(array)`: Function called after every array element access. This can be directly set to a function that you want to run after every access. By default, this is an empty function.
+* `algorithms.afterComparison(array, first, second)`: Function called after every array element comparison. This can be directly set to a function that you want to run after every comparison. By default, this is an empty function.
+
+Example:
+```js
+  var arr = [-922, 5, -21, 8177, -21, 7.7, 1.3, 0, -4, 67];
+  algorithms.quickSort(arr); // logs Object {runtime: 0, comparisons: 38, accesses: 42}
+  arr; // logs [-922, -21, -21, -4, 0, 1.3, 5, 7.7, 67, 8177]
+  algorithms.stats; // logs Object {runtime: 0, comparisons: 38, accesses: 42}
+  
+  algorithms.afterAccess = function(array) { console.log(array) };
+  arr = [6, 4, 3, 2, 5];
+  algorithms.bubbleSort(arr);
+  /* Console output
+    [4, 6, 3, 2, 5]
+    [4, 3, 6, 2, 5]
+    [4, 3, 2, 6, 5] 
+    [4, 3, 2, 5, 6] 
+    [3, 4, 2, 5, 6] 
+    [3, 2, 4, 5, 6] 
+    [2, 3, 4, 5, 6] 
+  */
+  
+```
