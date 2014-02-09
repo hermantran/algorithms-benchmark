@@ -31,7 +31,7 @@
       
       _swap(pivot, right);
       
-      for (i = left; i < right; i++) {
+      for (i = left; i < right; ++i) {
         // The right index now holds the pivot value, so this compares the pivot value
         if  (_compare(i, '<=', right)) {
           _swap(i, storeIndex);
