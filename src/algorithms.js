@@ -93,7 +93,7 @@
     return bool;
   }
 
-  algorithms.bubbleSort = function(array) {
+  algorithms.bubbleSort = function bubbleSort(array) {
     var len = array.length,
         swapped,
         i,
@@ -115,7 +115,7 @@
     }
   };
 
-  algorithms.cocktailSort = function(array) {
+  algorithms.cocktailSort = function cocktailSort(array) {
     var len = array.length,
         swapped,
         i,
@@ -148,7 +148,7 @@
     }
   };
 
-  algorithms.insertionSort = function(array) {
+  algorithms.insertionSort = function insertionSort(array) {
     var len = array.length,
         temp,
         pos,
@@ -175,34 +175,27 @@
     }
   };
 
-  algorithms.quickSort = (function() {
-    var prevPivot = [];
+  algorithms.quickSort = function quickSort(array, left, right) {
+    var len = array.length,
+        middle,
+        pivot;
+
+    left = left || 0;
+    right = right || len - 1;
     
-    function _quicksort(array, left, right) {
-      var len = array.length,
-          middle,
-          pivot;
+    if (left < right) {
+      middle = Math.round((left + right) / 2);
+      pivot = _partition(left, right, middle);
       
-      if (left === undefined && right === undefined) {
-        prevPivot.length = 0;
+      if (left === middle || right === middle) {
+        return;  
       }
       
-      left = left || 0;
-      right = right || len - 1;
-      
-      if (left < right) {
-        middle = Math.round((left + right) / 2);
-        pivot = _partition(array, left, right, middle);
-        
-        if (prevPivot.indexOf(pivot) < 0) {
-          prevPivot.push(pivot);
-          _quicksort(array, left, pivot - 1);
-          _quicksort(array, pivot + 1, right); 
-        }
-      }
+      quickSort(array, left, pivot - 1);
+      quickSort(array, pivot + 1, right); 
     }
-    
-    function _partition(array, left, right, pivot) {
+     
+    function _partition(left, right, pivot) {
       var storeIndex = left,
           i;
       
@@ -211,7 +204,9 @@
       for (i = left; i < right; ++i) {
         // The right index now holds the pivot value, so this compares the pivot value
         if  (_compare(i, '<=', right)) {
-          _swap(i, storeIndex);
+          if (i !== storeIndex) {
+            _swap(i, storeIndex);
+          }
           storeIndex++;
         }
       }
@@ -219,11 +214,9 @@
       _swap(right, storeIndex);
       return storeIndex;
     }
-    
-    return _quicksort;
-  })();
+  };
 
-  algorithms.selectionSort = function(array) {
+  algorithms.selectionSort = function selectionSort(array) {
     var len = array.length,
         min,
         i,
@@ -274,6 +267,41 @@
   algorithms.afterAccess = function() {};
   algorithms.afterComparison = function() {};
   algorithms.stats = _stats;
+  
+  // Add the internal helper functions for read-only
+  if ('defineProperties' in Object) {
+    Object.defineProperties(algorithms, {
+      afterAccess: {
+        enumerable: false
+      },
+      afterComparison: {
+        enumerable: false
+      },
+      stats: {
+        enumerable: false,
+        configurable: false,
+        writable: false
+      },
+      _swap: {
+        enumerable: false,
+        configurable: false,
+        writable: false,
+        value: _swap
+      },
+      _set: {
+        enumerable: false,
+        configurable: false,
+        writable: false,
+        value: _set
+      },
+      _compare: {
+        enumerable: false,
+        configurable: false,
+        writable: false,
+        value: _compare
+      }
+    });
+  }
 
   // http://www.matteoagosti.com/blog/2013/02/24/writing-javascript-modules-for-both-browser-and-node/
   if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {

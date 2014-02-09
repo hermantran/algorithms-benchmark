@@ -24,9 +24,7 @@ function createSuite(algorithm) {
 }
 
 for (var algorithm in window.algorithms) {
-  if (window.algorithms.hasOwnProperty(algorithm) && 
-      ['stats', 'afterAccess', 'afterComparison'].indexOf(algorithm) < 0) 
-  {
+  if (window.algorithms.hasOwnProperty(algorithm)) {
     createSuite(algorithm);  
   }
 }

@@ -1,4 +1,4 @@
-  algorithms.cocktailSort = function(array) {
+  algorithms.cocktailSort = function cocktailSort(array) {
     var len = array.length,
         swapped,
         i,

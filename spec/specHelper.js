@@ -1,4 +1,4 @@
-var random = randomArray();
+var random = randomArray(500);
 var testCases = {
   'empty array': {
     actual: [],
@@ -30,10 +30,13 @@ var testCases = {
   }
 };
 
-function randomArray() {
-  var random = [];
-  for (var i = 0; i < 50; i++) {
-      var el = Math.round(Math.random() * 50);
+function randomArray(size) {
+  var random = [],
+      i,
+      el;
+  
+  for (i = 0; i < size; ++i) {
+      el = Math.round(Math.random() * size);
       random.push(el);
   }
   

@@ -1,4 +1,4 @@
-  algorithms.bubbleSort = function(array) {
+  algorithms.bubbleSort = function bubbleSort(array) {
     var len = array.length,
         swapped,
         i,

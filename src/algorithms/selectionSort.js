@@ -1,4 +1,4 @@
-  algorithms.selectionSort = function(array) {
+  algorithms.selectionSort = function selectionSort(array) {
     var len = array.length,
         min,
         i,

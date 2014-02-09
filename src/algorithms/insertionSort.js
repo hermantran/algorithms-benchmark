@@ -1,4 +1,4 @@
-  algorithms.insertionSort = function(array) {
+  algorithms.insertionSort = function insertionSort(array) {
     var len = array.length,
         temp,
         pos,
