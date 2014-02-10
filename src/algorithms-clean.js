@@ -179,9 +179,11 @@
     var len = array.length,
         middle,
         pivot;
-
-    left = left || 0;
-    right = right || len - 1;
+    
+    if (arguments.length < 2) {
+      left = 0;
+      right = len - 1;
+    }
     
     if (left < right) {
       middle = Math.round((left + right) / 2);

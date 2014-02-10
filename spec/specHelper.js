@@ -1,4 +1,4 @@
-var random = randomArray(500);
+var random = randomArray(1000);
 var testCases = {
   'empty array': {
     actual: [],
