@@ -2,10 +2,10 @@
   'use strict';
   var algorithms = {},
       // Stats on latest sort - runtime in ms, array element comparisons, array element accesses
-      _stats = {
+      stats = {
         runtime: 0,
         comparisons: 0,
-        accesses: 0
+        swaps: 0
       },
       // Storing reference to array to be sorted, for use with internal helper functions
       _array,
@@ -58,15 +58,9 @@
     temp = _array[first];
     _array[first] = _array[second];
     _array[second] = temp;
-    _stats.accesses += 2;
-    algorithms.afterAccess(_array);
-  }
-  
-  // Sets the value of at an array index - one array element access
-  function _set(index, value) {
-    _array[index] = value;
-    _stats.accesses++;
-    algorithms.afterAccess(_array);
+    
+    stats.swaps++;
+    algorithms.afterSwap(_array, first, second);
   }
   
   // Compares the value at two given array indexes
@@ -88,7 +82,7 @@
       throw new Error('Unknown operator used.');  
     }
     
-    _stats.comparisons++;
+    stats.comparisons++;
     algorithms.afterComparison(_array, first, second);
     return bool;
   }

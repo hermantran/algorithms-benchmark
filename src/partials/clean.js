@@ -1,26 +1,23 @@
   // Add the internal helper functions for read-only
   if ('defineProperties' in Object) {
     Object.defineProperties(algorithms, {
-      afterAccess: {
-        enumerable: false
+      afterSwap: {
+        enumerable: false,
+        writable: true
       },
       afterComparison: {
-        enumerable: false
+        enumerable: false,
+        writable: true
       },
       stats: {
-        enumerable: false
+        enumerable: false,
+        writable: true
       },
       _swap: {
         enumerable: false,
         configurable: false,
         writable: false,
         value: _swap
-      },
-      _set: {
-        enumerable: false,
-        configurable: false,
-        writable: false,
-        value: _set
       },
       _compare: {
         enumerable: false,

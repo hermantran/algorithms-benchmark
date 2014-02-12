@@ -13,16 +13,16 @@
       var startTime = _now(),
           endTime;
       
-      _stats.runtime = 0;
-      _stats.comparisons = 0;
-      _stats.accesses = 0;
+      stats.runtime = 0;
+      stats.comparisons = 0;
+      stats.swaps = 0;
       _array = array;
       
       sort(_array);
       
       _array = [];
       endTime = _now();
-      _stats.runtime = endTime - startTime; 
-      return _stats;
+      stats.runtime = endTime - startTime; 
+      return stats;
     };
   }

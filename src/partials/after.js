@@ -1,7 +1,7 @@
   // Add these properties after each algorithm property is prepared
-  algorithms.afterAccess = function() {};
+  algorithms.afterSwap = function() {};
   algorithms.afterComparison = function() {};
-  algorithms.stats = _stats;
+  algorithms.stats = stats;
 
   // http://www.matteoagosti.com/blog/2013/02/24/writing-javascript-modules-for-both-browser-and-node/
   if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {

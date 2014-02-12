@@ -2,10 +2,10 @@
   'use strict';
   var algorithms = {},
       // Stats on latest sort - runtime in ms, array element comparisons, array element accesses
-      _stats = {
+      stats = {
         runtime: 0,
         comparisons: 0,
-        accesses: 0
+        swaps: 0
       },
       // Storing reference to array to be sorted, for use with internal helper functions
       _array,
@@ -58,15 +58,9 @@
     temp = _array[first];
     _array[first] = _array[second];
     _array[second] = temp;
-    _stats.accesses += 2;
-    algorithms.afterAccess(_array);
-  }
-  
-  // Sets the value of at an array index - one array element access
-  function _set(index, value) {
-    _array[index] = value;
-    _stats.accesses++;
-    algorithms.afterAccess(_array);
+    
+    stats.swaps++;
+    algorithms.afterSwap(_array, first, second);
   }
   
   // Compares the value at two given array indexes
@@ -88,7 +82,7 @@
       throw new Error('Unknown operator used.');  
     }
     
-    _stats.comparisons++;
+    stats.comparisons++;
     algorithms.afterComparison(_array, first, second);
     return bool;
   }
@@ -150,7 +144,6 @@
 
   algorithms.insertionSort = function insertionSort(array) {
     var len = array.length,
-        temp,
         pos,
         i,
         j;
@@ -161,16 +154,15 @@
       for (j = 0; j < i; ++j) {
         if (_compare(i, '<', j)) {
           pos = j;
-          temp = array[i];
           break;
         }
       }
       
       if (pos > -1) {
         for (j = i; j > pos; --j) {
-          _set(j, array[j-1]);
+          _swap(j, j-1);
         }
-        _set(pos, temp);
+        _swap(pos, j);
       }
     }
   };
@@ -252,24 +244,24 @@
       var startTime = _now(),
           endTime;
       
-      _stats.runtime = 0;
-      _stats.comparisons = 0;
-      _stats.accesses = 0;
+      stats.runtime = 0;
+      stats.comparisons = 0;
+      stats.swaps = 0;
       _array = array;
       
       sort(_array);
       
       _array = [];
       endTime = _now();
-      _stats.runtime = endTime - startTime; 
-      return _stats;
+      stats.runtime = endTime - startTime; 
+      return stats;
     };
   }
 
   // Add these properties after each algorithm property is prepared
-  algorithms.afterAccess = function() {};
+  algorithms.afterSwap = function() {};
   algorithms.afterComparison = function() {};
-  algorithms.stats = _stats;
+  algorithms.stats = stats;
 
   // http://www.matteoagosti.com/blog/2013/02/24/writing-javascript-modules-for-both-browser-and-node/
   if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {

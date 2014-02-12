@@ -1,8 +1,7 @@
 {
-  "name": "js-algorithms",
+  "name": "algorithms",
   "author": "Herman Tran <hermanctran@gmail.com>",
-  "version": "0.1.0",
-  "private": "true",
+  "version": "0.1.1",
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-jasmine": "~0.5.2",
