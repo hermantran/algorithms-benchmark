@@ -13,7 +13,7 @@ The following methods are supported:
 * `algorithms.bubbleSort(array)`
 * `algorithms.cocktailSort(array)`
 * `algorithms.insertionSort(array)`
-* `algorithms.quickSort(array, [left], [right])`
+* `algorithms.quickSort(array [, left] [, right])`
 * `algorithms.insertionSort(array)`
 
 All sorting methods return an object containing the following properties:
@@ -23,8 +23,8 @@ All sorting methods return an object containing the following properties:
 
 The additional helper object/functions are supported:
 * `algorithms.stats`: Returns the object containing stats from the latest run of any sort
-* `algorithms.afterSwap(array, first, second)`: Function called after every array element swap. This can be directly set to a function that you want to run after every swap. By default, this is an empty function.
-* `algorithms.afterComparison(array, first, second)`: Function called after every array element comparison. This can be directly set to a function that you want to run after every comparison. By default, this is an empty function.
+* `algorithms.afterSwap(array, first, second)`: Function called after every array element swap. This can be directly set to a function that you want to run after every swap. The function gets passed three arguments: the array (at its state after the swap), the index of the first swapped element, and the index of the second swapped element. By default, this is an empty function.
+* `algorithms.afterComparison(array, first, second)`: Function called after every array element comparison. This can be directly set to a function that you want to run after every comparison. The function gets passed three arguments: the array (at its state after the comparison), the index of the first compared element, and the index of the second compared element. By default, this is an empty function.
 
 Example:
 ```js
@@ -33,7 +33,7 @@ Example:
   arr; // logs [-922, -21, -21, -4, 0, 1.3, 5, 7.7, 67, 8177]
   algorithms.stats; // logs Object {runtime: 0, comparisons: 38, swaps: 21}
   
-  algorithms.afterAccess = function(array) { console.log(array) };
+  algorithms.afterSwap = function(array) { console.log(array) };
   arr = [6, 4, 3, 2, 5];
   algorithms.bubbleSort(arr);
   /* Console output
