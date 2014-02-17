@@ -14,7 +14,7 @@ The following methods are supported:
 * `algorithms.cocktailSort(array)`
 * `algorithms.insertionSort(array)`
 * `algorithms.quickSort(array [, left] [, right])`
-* `algorithms.insertionSort(array)`
+* `algorithms.selectionSort(array)`
 
 All sorting methods return an object containing the following properties:
 * runtime: The runtime of the sorting method. In browsers, this is in milliseconds and uses `window.performance.now()` where supported. In Node.js, this is in microseconds and uses `process.hrtime()`.
