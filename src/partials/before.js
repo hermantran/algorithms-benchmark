@@ -47,6 +47,8 @@
     return now;
   })();
   
+  function _noop() {}
+  
   // Swaps the values at two given array indexes - two array element accesses
   function _swap(first, second) {
     var temp;

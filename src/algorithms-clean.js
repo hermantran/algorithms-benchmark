@@ -47,6 +47,8 @@
     return now;
   })();
   
+  function _noop() {}
+  
   // Swaps the values at two given array indexes - two array element accesses
   function _swap(first, second) {
     var temp;
@@ -316,20 +318,19 @@
   }
 
   // Add these properties after each algorithm property is prepared
-  algorithms.afterSwap = function() {};
-  algorithms.afterComparison = function() {};
+  algorithms.afterSwap = _noop;
+  algorithms.afterComparison = _noop;
   algorithms.stats = stats;
 
   // http://www.matteoagosti.com/blog/2013/02/24/writing-javascript-modules-for-both-browser-and-node/
   if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
     module.exports = algorithms;
+  } 
+  else if (typeof define === 'function' && define.amd) {
+    define([], function() {
+      return algorithms;
+    });
   } else {
-    if (typeof define === 'function' && define.amd) {
-      define([], function() {
-        return algorithms;
-      });
-    } else {
-      window.algorithms = algorithms;
-    }
+    window.algorithms = algorithms;
   }
 })();
