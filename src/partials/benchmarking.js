@@ -10,19 +10,18 @@
     var sort = algorithms[algorithm];
     
     return function(array) {
-      var startTime = _now(),
-          endTime;
+      var startTime = _now();
       
       stats.runtime = 0;
       stats.comparisons = 0;
       stats.swaps = 0;
+      stats.sort = algorithm;
       _array = array;
       
       sort(_array);
       
       _array = [];
-      endTime = _now();
-      stats.runtime = endTime - startTime; 
+      stats.runtime = _now() - startTime; 
       return stats;
     };
   }

@@ -5,11 +5,12 @@
       stats = {
         runtime: 0,
         comparisons: 0,
-        swaps: 0
+        swaps: 0,
+        sort: null
       },
       // Storing reference to array to be sorted, for use with internal helper functions
       _array,
-      // Timestamp function to benchmark the runtime of each sorting algorithm,
+      // Timestamp function to benchmark the runtime of each sorting algorithm
       _now;
   
   _now = (function(){
@@ -48,6 +49,10 @@
   })();
   
   function _noop() {}
+  
+  function _min(first, second) {
+    return first <= second ? first : second;
+  }
   
   // Swaps the values at two given array indexes - two array element accesses
   function _swap(first, second) {
@@ -180,10 +185,6 @@
       }
     }
     
-    function _min(first, second) {
-      return first <= second ? first : second;
-    }
-    
     function _merge(left, right, end) {
       var rightIndex = right,
           swapIndex = right,
@@ -299,19 +300,18 @@
     var sort = algorithms[algorithm];
     
     return function(array) {
-      var startTime = _now(),
-          endTime;
+      var startTime = _now();
       
       stats.runtime = 0;
       stats.comparisons = 0;
       stats.swaps = 0;
+      stats.sort = algorithm;
       _array = array;
       
       sort(_array);
       
       _array = [];
-      endTime = _now();
-      stats.runtime = endTime - startTime; 
+      stats.runtime = _now() - startTime; 
       return stats;
     };
   }

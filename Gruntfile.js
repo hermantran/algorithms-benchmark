@@ -24,11 +24,11 @@ module.exports = function(grunt) {
         separator: '\n\n'
       },
       js: {
-        src: ['src/partials/before.js', 'src/algorithms/*.js', 'src/partials/benchmarking.js', 'src/partials/after.js'],
+        src: ['src/partials/header.js', 'src/algorithms/*.js', 'src/partials/benchmarking.js', 'src/partials/footer.js'],
         dest: 'src/algorithms.js'
       },
       clean: {
-        src: ['src/partials/before.js', 'src/algorithms/*.js', 'src/partials/clean.js', 'src/partials/after.js'],
+        src: ['src/partials/header.js', 'src/algorithms/*.js', 'src/partials/clean.js', 'src/partials/footer.js'],
         dest: 'src/algorithms-clean.js'
       },
     },

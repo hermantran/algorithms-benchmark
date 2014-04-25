@@ -9,10 +9,6 @@
       }
     }
     
-    function _min(first, second) {
-      return first <= second ? first : second;
-    }
-    
     function _merge(left, right, end) {
       var rightIndex = right,
           swapIndex = right,
