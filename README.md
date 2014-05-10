@@ -20,6 +20,7 @@ All sorting methods return an object containing the following properties:
 * runtime: The runtime of the sorting method. In browsers, this is in milliseconds and uses `window.performance.now()` where supported. In Node.js, this is in microseconds and uses `process.hrtime()`.
 * swaps: The number of times that two array elements were swapped.
 * comparisons: The number of times that two array elements were compared.
+* sort: The name of the sorting method.
 
 The additional helper object/functions are supported:
 * `algorithms.stats`: Returns the object containing stats from the latest run of any sort
@@ -29,9 +30,9 @@ The additional helper object/functions are supported:
 Example:
 ```js
   var arr = [-922, 5, -21, 8177, -21, 7.7, 1.3, 0, -4, 67];
-  algorithms.quickSort(arr); // logs Object {runtime: 0, comparisons: 38, swaps: 21}
+  algorithms.quickSort(arr); // logs Object {runtime: 0, comparisons: 38, swaps: 21, sort: "quickSort"}
   arr; // logs [-922, -21, -21, -4, 0, 1.3, 5, 7.7, 67, 8177]
-  algorithms.stats; // logs Object {runtime: 0, comparisons: 38, swaps: 21}
+  algorithms.stats; // logs Object {runtime: 0, comparisons: 38, swaps: 21, sort: "quickSort"}
   
   algorithms.afterSwap = function(array) { console.log(array) };
   arr = [6, 4, 3, 2, 5];
