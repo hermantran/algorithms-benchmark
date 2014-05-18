@@ -1,12 +1,12 @@
 (function() {
   'use strict';
   var algorithms = {},
-      // Stats on latest sort - runtime in ms, array element comparisons, array element accesses
+      // Stats on latest sort - runtime in ms, array element comparisons, array element accesses, sort type
       stats = {
+        sort: null,
         runtime: 0,
         comparisons: 0,
-        swaps: 0,
-        sort: null
+        swaps: 0
       },
       // Storing reference to array to be sorted, for use with internal helper functions
       _array,
@@ -20,7 +20,7 @@
       // http://stackoverflow.com/questions/11725691/how-to-get-a-microtime-in-node-js
       now = function now() {
         var hrTime = process.hrtime();
-        return (hrTime[0] * 1000 + hrTime[1] / 1000);
+        return (hrTime[0] * 100000 + hrTime[1] / 100000);
       };
     } else { 
       // performance.now() polyfill https://gist.github.com/paulirish/5438650
@@ -302,10 +302,10 @@
     return function(array) {
       var startTime = _now();
       
+      stats.sort = algorithm;
       stats.runtime = 0;
       stats.comparisons = 0;
       stats.swaps = 0;
-      stats.sort = algorithm;
       _array = array;
       
       sort(_array);

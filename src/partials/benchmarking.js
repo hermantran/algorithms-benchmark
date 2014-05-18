@@ -12,10 +12,10 @@
     return function(array) {
       var startTime = _now();
       
+      stats.sort = algorithm;
       stats.runtime = 0;
       stats.comparisons = 0;
       stats.swaps = 0;
-      stats.sort = algorithm;
       _array = array;
       
       sort(_array);

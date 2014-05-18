@@ -17,10 +17,10 @@ The following methods are supported:
 * `algorithms.selectionSort(array)`
 
 All sorting methods return an object containing the following properties:
-* runtime: The runtime of the sorting method. In browsers, this is in milliseconds and uses `window.performance.now()` where supported. In Node.js, this is in microseconds and uses `process.hrtime()`.
-* swaps: The number of times that two array elements were swapped.
-* comparisons: The number of times that two array elements were compared.
 * sort: The name of the sorting method.
+* runtime: The runtime of the sorting method in milliseconds. In browsers, this uses `window.performance.now()` where supported. In Node.js, this uses `process.hrtime()`.
+* comparisons: The number of times that two array elements were compared.
+* swaps: The number of times that two array elements were swapped.
 
 The additional helper object/functions are supported:
 * `algorithms.stats`: Returns the object containing stats from the latest run of any sort
