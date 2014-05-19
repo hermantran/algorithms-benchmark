@@ -25,8 +25,7 @@ function createSuite(algorithm) {
 
 for (var algorithm in window.algorithms) {
   if (window.algorithms.hasOwnProperty(algorithm) &&
-     ['afterSwap', 'afterComparison', 'stats'].indexOf(algorithm) < 0) 
-  {
+     algorithm.indexOf('Sort') >= 0) {
     createSuite(algorithm);  
   }
 }

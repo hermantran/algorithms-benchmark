@@ -12,6 +12,7 @@ Include algorithms.min.js on your page. The library is exposed as `window.algori
 The following methods are supported:
 * `algorithms.bubbleSort(array)`
 * `algorithms.cocktailSort(array)`
+* `algorithms.heapSort(array)`
 * `algorithms.insertionSort(array)`
 * `algorithms.quickSort(array [, left] [, right])`
 * `algorithms.selectionSort(array)`
@@ -46,5 +47,4 @@ Example:
     [3, 2, 4, 5, 6] 
     [2, 3, 4, 5, 6] 
   */
-  
 ```
