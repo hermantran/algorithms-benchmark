@@ -13,7 +13,7 @@
       // Timestamp function to benchmark the runtime of each sorting algorithm
       _now;
   
-  _now = (function(){
+  _now = (function() {
     var now;
     
     if (typeof window === 'undefined') {
@@ -340,35 +340,40 @@
     }
   };
 
-  // Add the internal helper functions for read-only
-  if ('defineProperties' in Object) {
-    Object.defineProperties(algorithms, {
-      afterSwap: {
-        enumerable: false,
-        writable: true
-      },
-      afterComparison: {
-        enumerable: false,
-        writable: true
-      },
-      stats: {
-        enumerable: false,
-        writable: true
-      },
-      _swap: {
-        enumerable: false,
-        configurable: false,
-        writable: false,
-        value: _swap
-      },
-      _compare: {
-        enumerable: false,
-        configurable: false,
-        writable: false,
-        value: _compare
-      }
-    });
+  // Hook up benchmarking to each sorting algorithm
+  for (var algorithm in algorithms) {
+    if (algorithms.hasOwnProperty(algorithm)) {
+        algorithms[algorithm] = _prepareBenchmarking(algorithm);
+    }
   }
+
+  // Return performance numbers from each sorting algorithm
+  function _prepareBenchmarking(algorithm) {
+    var sort = algorithms[algorithm];
+    
+    return function(array) {
+      var startTime = _now();
+      
+      stats.sort = algorithm;
+      stats.runtime = 0;
+      stats.comparisons = 0;
+      stats.swaps = 0;
+      _array = array;
+      
+      sort(_array);
+      
+      _array = [];
+      stats.runtime = _now() - startTime; 
+      return stats;
+    };
+  }
+
+  // Expose internal helper functions for debug purposes
+  algorithms._now = _now;
+  algorithms._noop = _noop;
+  algorithms._min = _min;
+  algorithms._swap = _swap;
+  algorithms._compare = _compare;
 
   // Add these properties after each algorithm property is prepared
   algorithms.afterSwap = _noop;

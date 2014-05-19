@@ -13,7 +13,7 @@
       // Timestamp function to benchmark the runtime of each sorting algorithm
       _now;
   
-  _now = (function(){
+  _now = (function() {
     var now;
     
     if (typeof window === 'undefined') {
