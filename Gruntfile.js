@@ -23,7 +23,7 @@ module.exports = function(grunt) {
       options: {
         separator: '\n\n'
       },
-      js: {
+      build: {
         src: [
           'src/partials/header.js', 
           'src/algorithms/*.js', 

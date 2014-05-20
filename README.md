@@ -14,7 +14,7 @@ The following methods are supported:
 * `algorithms.cocktailSort(array)`
 * `algorithms.heapSort(array)`
 * `algorithms.insertionSort(array)`
-* `algorithms.quickSort(array [, left] [, right])`
+* `algorithms.quickSort(array)`
 * `algorithms.selectionSort(array)`
 
 All sorting methods return an object containing the following properties:
@@ -25,8 +25,8 @@ All sorting methods return an object containing the following properties:
 
 The additional helper object/functions are supported:
 * `algorithms.stats`: Returns the object containing stats from the latest run of any sort
-* `algorithms.afterSwap(array, first, second)`: Function called after every array element swap. This can be directly set to a function that you want to run after every swap. The function gets passed three arguments: the array (at its state after the swap), the index of the first swapped element, and the index of the second swapped element. By default, this is an empty function.
 * `algorithms.afterComparison(array, first, second)`: Function called after every array element comparison. This can be directly set to a function that you want to run after every comparison. The function gets passed three arguments: the array (at its state after the comparison), the index of the first compared element, and the index of the second compared element. By default, this is an empty function.
+* `algorithms.afterSwap(array, first, second)`: Function called after every array element swap. This can be directly set to a function that you want to run after every swap. The function gets passed three arguments: the array (at its state after the swap), the index of the first swapped element, and the index of the second swapped element. By default, this is an empty function.
 
 Example:
 ```js

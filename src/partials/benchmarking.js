@@ -9,7 +9,7 @@
   function _prepareBenchmarking(algorithm) {
     var sort = algorithms[algorithm];
     
-    return function(array) {
+    return function sortAndBenchmark(array) {
       var startTime = _now();
       
       stats.sort = algorithm;

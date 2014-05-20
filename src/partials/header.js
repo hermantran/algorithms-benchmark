@@ -13,41 +13,35 @@
       // Timestamp function to benchmark the runtime of each sorting algorithm
       _now;
   
-  _now = (function() {
-    var now;
-    
-    if (typeof window === 'undefined') {
-      // http://stackoverflow.com/questions/11725691/how-to-get-a-microtime-in-node-js
-      now = function now() {
-        var hrTime = process.hrtime();
-        return (hrTime[0] * 100000 + hrTime[1] / 100000);
-      };
-    } else { 
-      // performance.now() polyfill https://gist.github.com/paulirish/5438650
-      if (typeof window.performance === 'undefined') {
-        window.performance = {};
+  if (typeof window === 'undefined') {
+    // http://stackoverflow.com/questions/11725691/how-to-get-a-microtime-in-node-js
+    _now = function _now() {
+      var hrTime = process.hrtime();
+      return (hrTime[0] * 100000 + hrTime[1] / 100000);
+    };
+  } else { 
+    // performance.now() polyfill https://gist.github.com/paulirish/5438650
+    if (typeof window.performance === 'undefined') {
+      window.performance = {};
+    }
+
+    if (!window.performance.now) {
+      var nowOffset = Date.now();
+
+      if (performance.timing && performance.timing.navigationStart) {
+        nowOffset = performance.timing.navigationStart;
       }
-    
-      if (!window.performance.now) {
-        var nowOffset = Date.now();
-      
-        if (performance.timing && performance.timing.navigationStart) {
-          nowOffset = performance.timing.navigationStart;
-        }
-      
-        window.performance.now = function now() {
-          return Date.now() - nowOffset;
-        };
-      }
-      
-      now = function() {
-        return window.performance.now();
+
+      window.performance.now = function now() {
+        return Date.now() - nowOffset;
       };
     }
-    
-    return now;
-  })();
-  
+
+    _now = function _now() {
+      return window.performance.now();
+    };
+  }
+
   function _noop() {}
   
   function _min(first, second) {
