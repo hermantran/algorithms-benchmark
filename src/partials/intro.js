@@ -1,17 +1,19 @@
 (function() {
   'use strict';
   var algorithms = {},
-      // Stats on latest sort - runtime in ms, array element comparisons, array element accesses, sort type
-      stats = {
-        sort: null,
-        runtime: 0,
-        comparisons: 0,
-        swaps: 0
-      },
       // Storing reference to array to be sorted, for use with internal helper functions
       _array,
       // Timestamp function to benchmark the runtime of each sorting algorithm
       _now;
+
+  /* Stats on latest sort - runtime in ms, array element comparisons, 
+    array element accesses, sort type */
+  var stats = {
+    sort: null,
+    runtime: 0,
+    comparisons: 0,
+    swaps: 0
+  };
   
   if (typeof window === 'undefined') {
     // http://stackoverflow.com/questions/11725691/how-to-get-a-microtime-in-node-js
@@ -28,8 +30,8 @@
     if (!window.performance.now) {
       var nowOffset = Date.now();
 
-      if (performance.timing && performance.timing.navigationStart) {
-        nowOffset = performance.timing.navigationStart;
+      if (window.performance.timing && window.performance.timing.navigationStart) {
+        nowOffset = window.performance.timing.navigationStart;
       }
 
       window.performance.now = function now() {

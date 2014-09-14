@@ -31,9 +31,9 @@ The additional helper object/functions are supported:
 Example:
 ```js
   var arr = [-922, 5, -21, 8177, -21, 7.7, 1.3, 0, -4, 67];
-  algorithms.quickSort(arr); // logs Object {runtime: 0, comparisons: 38, swaps: 21, sort: "quickSort"}
-  arr; // logs [-922, -21, -21, -4, 0, 1.3, 5, 7.7, 67, 8177]
-  algorithms.stats; // logs Object {runtime: 0, comparisons: 38, swaps: 21, sort: "quickSort"}
+  algorithms.quickSort(arr); // Object {runtime: 0, comparisons: 38, swaps: 21, sort: "quickSort"}
+  arr; // [-922, -21, -21, -4, 0, 1.3, 5, 7.7, 67, 8177]
+  algorithms.stats; // Object {runtime: 0, comparisons: 38, swaps: 21, sort: "quickSort"}
   
   algorithms.afterSwap = function(array) { console.log(array) };
   arr = [6, 4, 3, 2, 5];

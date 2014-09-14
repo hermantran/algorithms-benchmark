@@ -49,7 +49,3 @@ function randomArray(size) {
 function inOrder(first, second) {
   return first - second;
 }
-
-beforeEach(function() {
-  
-});

@@ -1,7 +1,7 @@
   // Hook up benchmarking to each sorting algorithm
   for (var algorithm in algorithms) {
     if (algorithms.hasOwnProperty(algorithm)) {
-        algorithms[algorithm] = _prepareBenchmarking(algorithm);
+      algorithms[algorithm] = _prepareBenchmarking(algorithm);
     }
   }
 

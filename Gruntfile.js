@@ -14,9 +14,11 @@ module.exports = function(grunt) {
     jshint: {
       all: [
         'Gruntfile.js',
-        'src/*.js',
-        'spec/**/*.js'
-      ]
+        'src/*.js'
+      ],
+      options: {
+        jshintrc: './.jshintrc'
+      }
     },
     
     concat: {
@@ -25,20 +27,20 @@ module.exports = function(grunt) {
       },
       build: {
         src: [
-          'src/partials/header.js', 
-          'src/algorithms/*.js', 
-          'src/partials/benchmarking.js', 
-          'src/partials/footer.js'
+          'src/partials/intro.js',
+          'src/algorithms/*.js',
+          'src/partials/benchmarking.js',
+          'src/partials/outro.js'
         ],
         dest: 'src/algorithms.js'
       },
       debug: {
         src: [
-          'src/partials/header.js', 
-          'src/algorithms/*.js', 
-          'src/partials/benchmarking.js', 
-          'src/partials/debug.js', 
-          'src/partials/footer.js'
+          'src/partials/intro.js',
+          'src/algorithms/*.js',
+          'src/partials/benchmarking.js',
+          'src/partials/debug.js',
+          'src/partials/outro.js'
         ],
         dest: 'src/algorithms.debug.js'
       },
@@ -46,17 +48,18 @@ module.exports = function(grunt) {
     
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */'  
+        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+        '<%= grunt.template.today("yyyy-mm-dd") %> */'
       },
       dist: {
         files: {
-          'dist/algorithms.min.js': ['src/algorithms.js']  
+          'dist/algorithms.min.js': ['src/algorithms.js']
         }
       }
     },
     
     watch: {
-      js: { 
+      js: {
         files: ['<%= jshint.all %>', 'src/**/*.js'],
         tasks: ['concat', 'jshint']
       }

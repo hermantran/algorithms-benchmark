@@ -1,7 +1,12 @@
 {
-  "name": "algorithms",
-  "author": "Herman Tran <hermanctran@gmail.com>",
+  "name": "algorithms-benchmark",
   "version": "0.1.4",
+  "author": "Herman Tran <hermanctran@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hermantran/algorithms-benchmark.git"
+  },
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-jasmine": "~0.5.2",
@@ -10,6 +15,7 @@
     "grunt-contrib-uglify": "~0.2.7",
     "grunt-contrib-concat": "~0.3.0"
   },
+  "main": "./dist/algorithms.min.js",
   "scripts": {
     "test": "grunt travis --verbose"
   }
