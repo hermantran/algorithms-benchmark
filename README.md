@@ -1,9 +1,9 @@
-  algorithms
+  algorithms-benchmark
 ==================
 
-[![Build Status](https://travis-ci.org/hermantran/js-algorithms.png?branch=master)](https://travis-ci.org/hermantran/js-algorithms)
+[![Build Status](https://travis-ci.org/hermantran/algorithms-benchmark.png?branch=master)](https://travis-ci.org/hermantran/algorithms-benchmark)
 
-algorithms is a sorting algorithm library in JavaScript that was created for the purposes of benchmarking and evaluating the differences between different sorting algorithms. The library currently includes implementations of the following: bubble sort, cocktail sort, heap sort, insertion sort, quick sort, and selection sort. Unit tests are written with the Jasmine BDD framework.
+algorithms-benchmark is a sorting algorithm library in JavaScript that was created for the purposes of benchmarking and evaluating the differences between different sorting algorithms. The library currently includes implementations of the following: bubble sort, cocktail sort, heap sort, insertion sort, quick sort, and selection sort. Unit tests are written with the Jasmine BDD framework.
 
 ## Setup
 Include algorithms.min.js on your page. The library is exposed as `window.algorithms` or alternatively as a CommonJS or AMD module if detected. 
